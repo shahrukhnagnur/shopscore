@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./auth.css"; // Import the CSS for styling
+import "./auth.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // ✅ Clear previous error messages
+    setError(""); 
 
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -33,12 +33,10 @@ const Login = () => {
         return;
       }
 
-      // ✅ Clear old session and store new credentials
       localStorage.clear();
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
 
-      // ✅ Redirect based on role
       if (data.role === "admin") {
         navigate("/admin");
       } else if (data.role === "user") {
