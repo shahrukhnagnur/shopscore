@@ -2,7 +2,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-// Admin Credentials (Fixed)
 const ADMIN_EMAIL = "admin@example.com";
 const ADMIN_PASSWORD = "Admin@123";
 
@@ -10,7 +9,6 @@ exports.signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Prevent registering as admin
     if (email === ADMIN_EMAIL) {
       return res.status(400).json({ error: "Admin account already exists." });
     }
@@ -32,13 +30,11 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check for Admin Login (Fixed Credentials)
     if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
       const token = jwt.sign({ id: "admin", role: "admin" }, process.env.JWT_SECRET, { expiresIn: "1h" });
       return res.json({ message: "Admin logged in", token, role: "admin" });
     }
 
-    // Check for Normal Users
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: "Invalid credentials." });
 
