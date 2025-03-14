@@ -11,7 +11,6 @@ const AdminDashboard = () => {
   const [newStore, setNewStore] = useState({ name: "", email: "", address: "" });
   const navigate = useNavigate();
 
-  // ✅ Fetch Dashboard Stats, Stores, and Users
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,13 +39,11 @@ const AdminDashboard = () => {
     fetchData();
   }, []);
 
-  // ✅ Handle Logout
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
   };
 
-  // ✅ Handle Store Addition
   const handleAddStore = async (e) => {
     e.preventDefault();
     try {
@@ -72,7 +69,6 @@ const AdminDashboard = () => {
     }
   };
 
-  // ✅ Handle Store Deletion
   const handleDeleteStore = async (storeId) => {
     if (!window.confirm("Are you sure you want to delete this store?")) return;
 
@@ -88,7 +84,6 @@ const AdminDashboard = () => {
     }
   };
 
-  // ✅ Handle User Deletion
   const handleDeleteUser = async (userId) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
 
@@ -104,7 +99,6 @@ const AdminDashboard = () => {
     }
   };
 
-  // ✅ Filtered Stores and Users
   const filteredStores = stores.filter(store =>
     store.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -135,7 +129,6 @@ const AdminDashboard = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      {/* ✅ Add Store Section */}
       <div className="add-store-section">
         <button className="add-store-btn" onClick={() => setShowForm(!showForm)}>
           {showForm ? "Cancel" : "Add Store"}
@@ -169,7 +162,6 @@ const AdminDashboard = () => {
         )}
       </div>
 
-      {/* ✅ Stores List */}
       <h2>Stores</h2>
       <div className="store-grid">
         {filteredStores.map(store => (
@@ -181,8 +173,6 @@ const AdminDashboard = () => {
           </div>
         ))}
       </div>
-
-      {/* ✅ Normal Users Section */}
       <h2>Users</h2>
       <div className="users-grid">
         {filteredUsers.map(user => (
