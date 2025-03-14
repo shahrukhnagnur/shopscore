@@ -39,7 +39,7 @@ const UserDashboard = () => {
   const openRatingModal = (store) => {
     setSelectedStore(store);
     setShowModal(true);
-    setRating(0); // Reset rating when opening modal
+    setRating(0); 
   };
 
   const submitRating = async () => {
@@ -55,7 +55,7 @@ const UserDashboard = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: JSON.stringify({ storeId: selectedStore._id, rating }), // ✅ Pass storeId properly
+        body: JSON.stringify({ storeId: selectedStore._id, rating }),
       });
   
       const data = await response.json();
@@ -65,8 +65,8 @@ const UserDashboard = () => {
       }
   
       alert("Rating submitted successfully!");
-      setShowModal(false); // ✅ Close modal
-      setRating(0); // ✅ Reset rating after submission
+      setShowModal(false); 
+      setRating(0); 
     } catch (error) {
       console.error("Error submitting rating:", error.message);
     }
