@@ -2,7 +2,6 @@ const User = require("../models/User");
 const Store = require("../models/Store");
 const Rating = require("../models/Rating");
 
-// Get platform statistics
 exports.getDashboardStats = async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
@@ -15,7 +14,6 @@ exports.getDashboardStats = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch dashboard statistics." });
   }
 };
-// Get all users
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");
@@ -25,7 +23,6 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-// Get normal users only
 exports.getNormalUsers = async (req, res) => {
   try {
     const users = await User.find({ role: "user" }).select("-password");
@@ -35,7 +32,6 @@ exports.getNormalUsers = async (req, res) => {
   }
 };
 
-// Get all stores
 exports.getAllStores = async (req, res) => {
   try {
     const stores = await Store.find();
@@ -46,7 +42,6 @@ exports.getAllStores = async (req, res) => {
   }
 };
 
-// Add a new store
 exports.addStore = async (req, res) => {
   try {
     const { name, email, address } = req.body;
@@ -55,7 +50,6 @@ exports.addStore = async (req, res) => {
       return res.status(400).json({ error: "All fields are required." });
     }
 
-    // ✅ Check if store already exists by email
     const existingStore = await Store.findOne({ email });
     if (existingStore) {
       return res.status(400).json({ error: "Store with this email already exists." });
@@ -70,7 +64,6 @@ exports.addStore = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-// Delete a user
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
@@ -82,7 +75,6 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-// Delete a store
 exports.deleteStore = async (req, res) => {
   try {
     const store = await Store.findByIdAndDelete(req.params.id);
