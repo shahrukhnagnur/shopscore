@@ -1,0 +1,86 @@
+/* Full Page Center */
+* {
+  padding: 0px;
+  margin: 0px;
+}
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e1e2f, #252544);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Auth Box */
+.auth-box {
+  width: 380px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+/* Title */
+.auth-box h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+/* Input Group */
+.input-group {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input Fields */
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.auth-box input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Button */
+.auth-box button {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.auth-box button:hover {
+  background: #0056b3;
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 450px) {
+  .auth-box {
+    width: 90%;
+  }
+}
